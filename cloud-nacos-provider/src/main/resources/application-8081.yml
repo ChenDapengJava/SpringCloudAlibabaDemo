@@ -8,7 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.242.129:8848
+        server-addr: 192.168.242.112:81 # 访问nacos集群
 
 management:
   endpoint:
