@@ -18,6 +18,7 @@
         <module>cloud-nacos-provider</module>
         <module>cloud-nacos-consumer</module>
         <module>cloud-nacos-config</module>
+        <module>cloud-sentinel-service</module>
     </modules>
 
     <!-- 作版本仲裁 -->

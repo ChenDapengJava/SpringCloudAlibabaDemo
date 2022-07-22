@@ -1,0 +1,24 @@
+server:
+  port: 7072
+
+spring:
+  application:
+    name: cloud-sentinel-service
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.242.112:81
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+      # https://github.com/alibaba/Sentinel/issues/1213
+      web-context-unify: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
