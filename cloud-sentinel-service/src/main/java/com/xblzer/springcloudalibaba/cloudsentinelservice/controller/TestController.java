@@ -1,5 +1,6 @@
 package com.xblzer.springcloudalibaba.cloudsentinelservice.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.xblzer.springcloudalibaba.cloudsentinelservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,5 +70,17 @@ public class TestController {
             throw new RuntimeException("id 不能等于0！");
         }
         return "testException success!";
+    }
+
+    @GetMapping("/getUser")
+    @SentinelResource("getUser")
+    public String getUser() {
+        return "getUser success!";
+    }
+
+    @GetMapping("/getOrder")
+    @SentinelResource("getOrder")
+    public String getOrder() {
+        return "getOrder success!";
     }
 }
