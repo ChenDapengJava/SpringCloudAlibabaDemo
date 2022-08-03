@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -40,5 +41,33 @@ public class TestController {
     @GetMapping("/test-c")
     public String testSentinelC() {
         return "hello , Sentinel C";
+    }
+
+    @GetMapping("/testSlowRate")
+    public String testSlowRate() {
+        //随机睡眠毫秒数
+        int sleepMilliSeconds = (int) (Math.random() * 1000);
+        try {
+            TimeUnit.MILLISECONDS.sleep(sleepMilliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "testSlowRate success! slept " + sleepMilliSeconds + "ms.";
+    }
+
+    @GetMapping("/testExceptionRate")
+    public String testExceptionRate(Integer id) {
+        if (id == 0) {
+            throw new RuntimeException("id 不能等于0！");
+        }
+        return "testExceptionRate success!";
+    }
+
+    @GetMapping("/testException")
+    public String testException(Integer id) {
+        if (id == 0) {
+            throw new RuntimeException("id 不能等于0！");
+        }
+        return "testException success!";
     }
 }
