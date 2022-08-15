@@ -18,6 +18,7 @@
         <module>nacos-provider</module>
         <module>nacos-consumer</module>
         <module>nacos-config</module>
+        <module>sentinel-service</module>
     </modules>
 
     <!-- 作版本仲裁 -->
