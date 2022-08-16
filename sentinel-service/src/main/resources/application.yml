@@ -3,11 +3,12 @@ server:
 
 spring:
   application:
-    name: cloud-sentinel-service
+    name: sentinel-service
 
   cloud:
     nacos:
       discovery:
+        # Nacos 集群
         server-addr: 192.168.242.112:81
     sentinel:
       transport:
@@ -15,13 +16,20 @@ spring:
         port: 8719
       # https://github.com/alibaba/Sentinel/issues/1213
       web-context-unify: false
+      # Sentinel 规则持久化到 Nacos
       datasource:
-        nacos:
+        rule1:
           nacos:
             serverAddr: 192.168.242.112:81
             groupId: DEFAULT_GROUP
             dataId: sentinelFlowRule.json
             ruleType: flow
+        rule2:
+          nacos:
+            serverAddr: 192.168.242.112:81
+            groupId: DEFAULT_GROUP
+            dataId: hotKeyRule.json
+            ruleType: param-flow
 
 management:
   endpoints:
