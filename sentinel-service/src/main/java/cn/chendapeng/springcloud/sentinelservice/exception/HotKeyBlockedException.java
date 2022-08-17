@@ -1,5 +1,7 @@
 package cn.chendapeng.springcloud.sentinelservice.exception;
 
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+
 /**
  * 博客：https://chendapeng.cn - 行百里者半九十，做事要善始善终！
  * 公众号：行百里er
@@ -14,6 +16,13 @@ public class HotKeyBlockedException extends RuntimeException {
     public HotKeyBlockedException(Object hotKey) {
         super("热点参数 [" + hotKey + "]限流！");
         this.hotKey = hotKey;
+    }
+
+    public static String getProductBlockHandler(Long userId,
+                                                Long productId,
+                                                Integer categoryId,
+                                                BlockException blockException) {
+        throw new HotKeyBlockedException(userId);
     }
 
     public Object getHotKey() {

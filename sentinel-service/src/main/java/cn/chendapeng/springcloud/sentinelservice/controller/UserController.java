@@ -1,5 +1,6 @@
 package cn.chendapeng.springcloud.sentinelservice.controller;
 
+import cn.chendapeng.springcloud.sentinelservice.exception.BusinessException;
 import cn.chendapeng.springcloud.sentinelservice.exception.HotKeyBlockedException;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
@@ -20,20 +21,30 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping("/getProduct")
-    @SentinelResource(value = "getProduct", blockHandler = "getProductBlockHandler")
+    @SentinelResource(value = "getProduct",
+            blockHandlerClass = HotKeyBlockedException.class,
+            blockHandler = "getProductBlockHandler",
+            fallbackClass = BusinessException.class,
+            fallback = "getProductFallback"
+    )
     public String getProduct(@RequestParam(value = "userId", required = false) Long userId,
                              @RequestParam(value = "productId", required = false) Long productId,
                              @RequestParam(value = "categoryId", required = false) Integer categoryId) {
         log.info("getProduct param userId={},productId={},categoryId={}", userId, productId, categoryId);
+        // 测试 fallback
+        if (productId < 0) {
+            throw new BusinessException();
+        }
         return "getProduct success";
     }
 
-    public String getProductBlockHandler(Long userId,
-                                         Long productId,
-                                         Integer categoryId,
-                                         BlockException blockException) {
-        throw new HotKeyBlockedException(userId);
-    }
+    // 限流处理放到 HotKeyBlockedException 类中
+//    public String getProductBlockHandler(Long userId,
+//                                         Long productId,
+//                                         Integer categoryId,
+//                                         BlockException blockException) {
+//        throw new HotKeyBlockedException(userId);
+//    }
 
 //    public String getProductBlockHandler(Long userId,
 //                                         Long productId,
