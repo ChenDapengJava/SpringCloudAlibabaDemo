@@ -19,7 +19,12 @@ public enum ResponseCode {
     /**
      * 系统内部异常
      */
-    INTERNAL_ERROR("B0001", "系统执行出错");
+    INTERNAL_ERROR("B0001", "系统执行出错"),
+
+    /**
+     * 热点参数限流
+     */
+    HOT_KEY_BLOCKED("B0002", "热点参数限流");
 
     /**
      * 状态码
