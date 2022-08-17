@@ -20,6 +20,7 @@
         <module>nacos-consumer</module>
         <module>nacos-config</module>
         <module>sentinel-service</module>
+        <module>open-feign-service</module>
     </modules>
 
     <!-- 作版本仲裁 -->

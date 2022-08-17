@@ -1,0 +1,17 @@
+server:
+  port: 6061
+
+spring:
+  application:
+    name: open-feign-service
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.242.112:81
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"
