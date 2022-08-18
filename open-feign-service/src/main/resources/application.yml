@@ -10,8 +10,27 @@ spring:
       discovery:
         server-addr: 192.168.242.112:81
 
+logging:
+  level:
+    # 给指定的 FeignClient 接口加指定的日志级别
+    cn.chendapeng.springcloud.openfeignservice.service.ProductService: debug
+
+feign:
+  client:
+    config:
+      # 默认的超时时间设置
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+      # 在指定的 FeignClient 设置超时时间，覆盖默认的设置
+      nacos-provider:
+        connectTimeout: 1000
+        readTimeout: 1000
+        loggerLevel: full
+
 management:
   endpoint:
     web:
       exposure:
         include: "*"
+
