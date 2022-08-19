@@ -24,7 +24,12 @@ public enum ResponseCode {
     /**
      * 热点参数限流
      */
-    HOT_KEY_BLOCKED("B0002", "热点参数限流");
+    HOT_KEY_BLOCKED("B0002", "热点参数限流"),
+
+    /**
+     * 调用接口失败
+     */
+    RPC_ERROR("C0001", "调用远程接口失败");
 
     /**
      * 状态码

@@ -38,11 +38,11 @@ public class TestController {
     @GetMapping("/product/{id}")
     public String getProduct(@PathVariable Long id) {
         // 添加 sleep 时间，模拟超时连接
-        try {
+        /*try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         return serverPort + "：" + PRODUCT_MAP.get(id);
     }
 

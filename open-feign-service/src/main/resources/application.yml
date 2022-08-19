@@ -9,6 +9,20 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.242.112:81
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+      # https://github.com/alibaba/Sentinel/issues/1213
+      web-context-unify: false
+      # Sentinel 规则持久化到 Nacos
+      datasource:
+        rule1:
+          nacos:
+            serverAddr: 192.168.242.112:81
+            groupId: DEFAULT_GROUP
+            dataId: sentinelFlowRule.json
+            ruleType: flow
 
 logging:
   level:
@@ -27,6 +41,9 @@ feign:
         connectTimeout: 1000
         readTimeout: 1000
         loggerLevel: full
+  # 激活 Sentinel
+  sentinel:
+    enabled: true
 
 management:
   endpoint:
