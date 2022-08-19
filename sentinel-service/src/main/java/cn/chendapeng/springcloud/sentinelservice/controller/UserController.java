@@ -32,7 +32,7 @@ public class UserController {
                              @RequestParam(value = "categoryId", required = false) Integer categoryId) {
         log.info("getProduct param userId={},productId={},categoryId={}", userId, productId, categoryId);
         // 测试 fallback
-        if (productId < 0) {
+        if (productId != null && productId < 0) {
             throw new BusinessException();
         }
         return "getProduct success";
