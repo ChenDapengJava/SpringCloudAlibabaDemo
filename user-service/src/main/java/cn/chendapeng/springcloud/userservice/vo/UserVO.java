@@ -18,6 +18,11 @@ public class UserVO {
 
     private String nickName;
 
+    /**
+     * 测试负载均衡
+     */
+    private String serverPort;
+
     public UserVO() {
     }
 
