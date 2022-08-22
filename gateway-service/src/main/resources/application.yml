@@ -1,0 +1,26 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    nacos:
+      discovery:
+        # Nacos 集群
+        server-addr: 192.168.242.112:81
+    gateway:
+      # 路由列表
+      routes:
+        - id: user-service
+          uri: http://localhost:8001
+          predicates:
+            - Path=/user/**
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
