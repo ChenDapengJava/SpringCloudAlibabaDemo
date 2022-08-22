@@ -23,6 +23,7 @@
         <module>open-feign-service</module>
         <module>gateway-service</module>
         <module>user-service</module>
+        <module>order-service</module>
     </modules>
 
     <!-- 作版本仲裁 -->
