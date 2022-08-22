@@ -13,13 +13,26 @@ spring:
     # 配置项 spring.cloud.gateway.discovery.locator.enabled 默认为 false
     # 如果该配置项设置为 true，则可以根据地址 http://网关地址/服务名称/** 进行访问，且自动负载均衡
     # 如果网关配置了 routes，并且配置了 lb 负载均衡，那么可以不加服务名称就可访问，为了不暴露服务名称，可将此选项设置为false（或者不配置，默认就是false）
-#    gateway:
+    gateway:
 #      discovery:
 #        locator:
 #          enabled: true
-#      # 配置网关路由
-#      routes:
-#        - id: user-service
-#          uri: lb://user-service
-#          predicates:
-#            - Path=/user/**
+      # 配置网关路由
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+#            - Method=GET
+#            - Query=name, .+
+#            - Query=age, \d+
+#            - Host=**.chendapeng.cn
+#            - Header=X-Request-Name, .+
+#            - After=2022-08-26T23:29:28.831+08:00[Asia/Shanghai]
+          filters:
+#            - AddRequestHeader=X-Request-Home, China
+            - RedirectTo=302, https://google.com
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**

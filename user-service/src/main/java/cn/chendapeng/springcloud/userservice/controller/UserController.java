@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 博客：https://chendapeng.cn - 行百里者半九十，做事要善始善终！
  * 公众号：行百里er
@@ -28,11 +30,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/info/{id}")
-    public UserVO getUserInfo(@PathVariable("id") Long id) {
+    public UserVO getUserInfo(@PathVariable("id") Long id, HttpServletRequest request) {
         log.info("Server port:{}", serverPort);
         UserVO userVO = userService.getUserInfo(id);
         // 测试网关负载均衡
         userVO.setServerPort(serverPort);
+        // 测试网关的 AddRequestHeader 过滤器
+        log.info("获取网关 AddRequestHeader 过滤器添加的请求头 X-Request-Home={}", request.getHeader("X-Request-Home"));
         return userVO;
     }
 

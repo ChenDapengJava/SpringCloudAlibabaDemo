@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
  * @author 行百里者
  * @date 2022-08-22 21:24
  */
-@Configuration
+//@Configuration
 public class GatewayRouteConfig {
 
-    @Bean
+//    @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/user/**")
