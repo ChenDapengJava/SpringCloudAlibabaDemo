@@ -10,6 +10,26 @@ spring:
       discovery:
         # Nacos 集群
         server-addr: 192.168.242.112:81
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      datasource:
+        myGatewayRule:
+          nacos:
+            serverAddr: 192.168.242.112:81
+            groupId: DEFAULT_GROUP
+            dataType: json
+            dataId: myGatewayRule.json
+            ruleType: gw-flow
+      filter:
+        enabled: false
+      scg:
+        fallback:
+          # 响应模式有 redirect 和 response 两种
+          mode: response
+          response-status: 200
+          response-body: '{"code": 429, "message": "哥们，这瓜不熟，你走吧..."}'
+          # redirect: https://google.com
     # 配置项 spring.cloud.gateway.discovery.locator.enabled 默认为 false
     # 如果该配置项设置为 true，则可以根据地址 http://网关地址/服务名称/** 进行访问，且自动负载均衡
     # 如果网关配置了 routes，并且配置了 lb 负载均衡，那么可以不加服务名称就可访问，为了不暴露服务名称，可将此选项设置为false（或者不配置，默认就是false）
@@ -30,9 +50,22 @@ spring:
 #            - Header=X-Request-Name, .+
 #            - After=2022-08-26T23:29:28.831+08:00[Asia/Shanghai]
           filters:
-#            - AddRequestHeader=X-Request-Home, China
-            - RedirectTo=302, https://google.com
+            - AddRequestHeader=X-Request-Home, China
+#            - RedirectTo=302, https://google.com
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/order/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                key-resolver: "#{@userKeyResolver}"
+
+  # 连接 Redis
+  redis:
+    host: 192.168.242.112
+    port: 16397
+    password: s1lcA6;.7Lx9,x
+
