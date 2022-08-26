@@ -13,7 +13,7 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
-      # https://github.com/alibaba/Sentinel/issues/1213
+      # https://github.com/alibaba/Sentinel/issues/1213 链路规则问题
       web-context-unify: false
       # Sentinel 规则持久化到 Nacos
       datasource:
