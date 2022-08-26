@@ -8,6 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
+        # nacos 服务地址 IP:PORT
         server-addr: 192.168.242.129:8848
 
 # 消费者要访问的服务提供者-这些服务提供者已注册到nacos
