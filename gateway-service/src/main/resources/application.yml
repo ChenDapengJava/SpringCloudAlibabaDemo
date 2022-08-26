@@ -8,7 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        # Nacos 集群
+        # Nacos 集群配置
         server-addr: 192.168.242.112:81
     sentinel:
       transport:
