@@ -10,9 +10,15 @@ spring:
       discovery:
         # Nacos 集群
         server-addr: 192.168.242.112:81
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  sleuth:
+    enabled: true
+    sampler:
+      # 设置 Sleuth 收集信息的百分比，一般情况下，10%就够用了，这里设置100%观察
+      rate: 100
+  zipkin:
+    sender:
+      type: web
+    base-url: http://192.168.242.112:9411/
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: DEBUG

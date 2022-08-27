@@ -1,14 +1,13 @@
 server:
-  port: 8003
+  port: 8005
 
 spring:
   application:
-    name: order-service
+    name: product-service
 
   cloud:
     nacos:
       discovery:
-        # Nacos 集群配置
         server-addr: 192.168.242.112:81
   sleuth:
     enabled: true

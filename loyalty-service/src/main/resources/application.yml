@@ -1,14 +1,12 @@
 server:
-  port: 8003
+  port: 8006
 
 spring:
   application:
-    name: order-service
-
+    name: loyalty-service
   cloud:
     nacos:
       discovery:
-        # Nacos 集群配置
         server-addr: 192.168.242.112:81
   sleuth:
     enabled: true
@@ -19,6 +17,7 @@ spring:
     sender:
       type: web
     base-url: http://192.168.242.112:9411/
+
 logging:
   level:
     org.springframework.web.servlet.DispatcherServlet: DEBUG
