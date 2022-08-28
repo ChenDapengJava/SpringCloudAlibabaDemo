@@ -4,5 +4,20 @@ server:
 spring:
   application:
     name: admin-server
+  security:
+    user:
+      name: admin
+      password: admin123
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.242.112:81
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
-
+  endpoint:
+    health:
+      show-details: always

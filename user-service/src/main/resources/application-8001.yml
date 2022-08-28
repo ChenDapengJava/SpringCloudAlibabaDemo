@@ -10,15 +10,30 @@ spring:
       discovery:
         # Nacos 集群配置
         server-addr: 192.168.242.112:81
-  sleuth:
-    enabled: true
-    sampler:
-      # 设置 Sleuth 收集信息的百分比，一般情况下，10%就够用了，这里设置100%观察
-      rate: 100
-  zipkin:
-    sender:
-      type: web
-    base-url: http://192.168.242.112:9411/
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8082
+#        instance:
+#          # 注册时 admin 中显示IP地址不显示主机名
+#          prefer-ip: true
+#        username: admin
+#        password: admin123
+#  sleuth:
+#    enabled: true
+#    sampler:
+#      # 设置 Sleuth 收集信息的百分比，一般情况下，10%就够用了，这里设置100%观察
+#      rate: 100
+#  zipkin:
+#    sender:
+#      type: web
+#    base-url: http://192.168.242.112:9411/
 logging:
   level:
     org.springframework.web.servlet.DispatcherServlet: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
