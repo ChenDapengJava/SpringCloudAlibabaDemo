@@ -7,7 +7,6 @@
         <groupId>cn.chendapeng</groupId>
         <artifactId>SpringCloudAlibabaDemo</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
 
     <groupId>cn.chendapeng.springcloud</groupId>
@@ -45,4 +44,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
