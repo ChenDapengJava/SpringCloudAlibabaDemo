@@ -27,6 +27,8 @@
         <module>product-service</module>
         <module>loyalty-service</module>
         <module>spring-boot-admin-server</module>
+        <module>seata-order-service</module>
+        <module>seata-ware-service</module>
     </modules>
 
     <!-- 作版本仲裁 -->

@@ -1,0 +1,44 @@
+server:
+  port: 8007
+
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.242.112:81
+        namespace: 5a4e4c1f-beda-4ae5-a3d7-428950e7473b
+        group: SEATA_GROUP
+      username: nacos
+      password: nacos123
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.242.112:3306/seata-order?characterEncoding=utf-8&useSSL=false
+    username: zhangsan
+    password: Fawai@kuangtu6
+
+seata:
+  tx-service-group: default_tx_group
+  service:
+    vgroup-mapping:
+      default_tx_group: default
+  enable-auto-data-source-proxy: true
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.242.112:81
+      namespace: 5a4e4c1f-beda-4ae5-a3d7-428950e7473b
+      group: SEATA_GROUP
+  config:
+    type: nacos
+    nacos:
+      data-id: seataServer.properties
+      server-addr: 192.168.242.112:81
+      namespace: 5a4e4c1f-beda-4ae5-a3d7-428950e7473b
+      group: SEATA_GROUP
+
+logging:
+  level:
+    cn.chendapeng.springcloud.seataorderservice.dao.OrderMapper: DEBUG

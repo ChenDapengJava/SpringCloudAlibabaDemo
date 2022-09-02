@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * 博客：https://chendapeng.cn - 行百里者半九十，凡是善始善终，吾将上下而求索！
+ * 博客：https://chendapeng.cn - 行百里者半九十，凡事善始善终，吾将上下而求索！
  * 公众号：行百里er
  *
  * @author 行百里者
