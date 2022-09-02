@@ -6,6 +6,7 @@ import cn.chendapeng.springcloud.seataorderservice.feign.WareFeignClient;
 import cn.chendapeng.springcloud.seataorderservice.service.OrderService;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private WareFeignClient wareFeignClient;
 
+    /**
+     * 如果异常出现在本地服务，那么使用 Spring 的 @Transactional 就可以回滚
+     * 如果异常出现在远程服务，那么使用 Seata 的 @GlobalTransactional 可以解决分布式事务问题
+     * 分布式环境下，可以只保留 @GlobalTransactional 注解
+     */
     @Override
+    @GlobalTransactional
     @Transactional(rollbackFor = Exception.class)
     public void createOrder(Order order) {
         // 订单号

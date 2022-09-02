@@ -26,7 +26,7 @@ public class WareServiceImpl extends ServiceImpl<WareMapper, Ware> implements Wa
     @Override
     public void deductStock(Long skuId) {
         log.info("开始扣减库存，skuId={}", skuId);
-        log.error("此处添加一个异常，模拟分布式事务发生：{}", skuId / 0);
+        // log.error("此处添加一个异常，模拟分布式事务发生：{}", skuId / 0);
         wareMapper.deductStock(skuId);
     }
 }
