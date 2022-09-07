@@ -47,7 +47,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setCreateTime(new Date());
 
         log.info("开始创建订单:{}", order);
-        // 此处异常使用 Spring 的 @Transactional 就可以解决
         log.error("此处添加异常order.getId()此时为null，模拟分布式事务出现：{}", order.getId().toString());
         // 创建订单
         orderMapper.insert(order);
