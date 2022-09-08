@@ -16,7 +16,7 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface WareMapper extends BaseMapper<Ware> {
 
-    @Update("update t_ware set stock=stock-1 where sku_id=#{skuId}")
+    @Update("update t_ware set stock=stock-1, update_time=now() where sku_id=#{skuId}")
     void deductStock(Long skuId);
 
 }

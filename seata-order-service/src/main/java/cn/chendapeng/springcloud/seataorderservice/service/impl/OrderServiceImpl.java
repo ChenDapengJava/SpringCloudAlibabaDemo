@@ -33,8 +33,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private WareFeignClient wareFeignClient;
 
     @Override
-    //@GlobalTransactional
-    @Transactional(rollbackFor = Exception.class)
+    @GlobalTransactional
+    //@Transactional(rollbackFor = Exception.class)
     public void createOrder(Order order) {
         log.info("开始扣减库存，skuId={}", order.getSkuId());
         // 扣减库存
